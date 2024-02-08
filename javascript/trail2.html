@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Bar</title>
+</head>
+<body>
+
+<h1>My Menu</h1>
+<!-- Container for the menu -->
+<select id="menu"></select>
+
+<script>
+  const jsonData = [
+    {
+      "name": "New",
+      "ID": 2048,
+      "parent": "0"     
+    },
+    {
+      "name": "Travel Tales",
+      "ID": 7584,
+      "parent": "0"
+    },
+    {
+      "name": "Travel Themes",
+      "ID": 334,
+      "parent": "0"
+    },
+    {
+      "name": "Domestic Tales",
+      "ID": 8887,
+      "parent": "7584"    
+    },
+    {
+      "name": "International Tales",
+      "ID": 8888,
+      "parent": "7584"
+    },
+    {
+      "name": "Honeymoon",
+      "ID": 340,
+      "parent": "8888"
+    },
+    {
+      "name": "Weekend Getaways",
+      "ID": 1416,
+      "parent": "334"
+    },
+    {
+      "name": "Holiday",
+      "ID": 968,
+      "parent": "334"
+    },
+    {
+      "name": "Travelogues",
+      "ID": 4208,
+      "parent": "334"
+    },
+    {
+      "name": "Shopping & Party",
+      "ID": 337,
+      "parent": "334"
+    },
+    {
+      "name": "Food & Drink",
+      "ID": 338,
+      "parent": "334"
+    },
+    {
+      "name": "Adventure",
+      "ID": 335,
+      "parent": "338"
+    },
+    {
+      "name": "Heritage",
+      "ID": 339,
+      "parent": "334"
+    },
+    {
+      "name": "Pilgrimage",
+      "ID": 341,
+      "parent": "334"
+    },
+    {
+      "name": "Art & Festival",
+      "ID": 336,
+      "parent": "334"
+    },
+    {
+      "name": "Health & Wellness",
+      "ID": 1418,
+      "parent": "334"
+    },
+    {
+      "name": "Photoscope",
+      "ID": 1837,
+      "parent": "1418"
+    },
+    {
+      "name": "Travel Tips",
+      "ID": 331,
+      "parent": "1418"
+    },
+    {
+      "name": "Go International",
+      "ID": 1544,
+      "parent": "336"
+    },
+    {
+      "name": "Offbeat",
+      "ID": 1545,
+      "parent": "0"
+    }
+  ];
+
+  function createMenu(menuItems, parentElement) {
+    const select = document.createElement('select');
+    menuItems.forEach(item => {
+      const option = document.createElement('option');
+      option.textContent = item.name;
+      option.value = item.ID;
+      select.appendChild(option);
+      const children = jsonData.filter(child => child.parent === String(item.ID));
+      if (children.length > 0) {
+        const group = document.createElement('optgroup');
+        group.label = item.name;
+        children.forEach(child => {
+          const childOption = document.createElement('option');
+          childOption.textContent = child.name;
+          childOption.value = child.ID;
+          group.appendChild(childOption);
+        });
+        select.appendChild(group);
+      }
+    });
+    parentElement.appendChild(select);
+  }
+
+  const menuContainer = document.getElementById('menu');
+  createMenu(jsonData.filter(item => item.parent === "0"), menuContainer);
+</script>
+
+</body>
+</html>

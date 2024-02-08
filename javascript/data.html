@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Bar</title>
+  <style>
+    /* CSS styles for the menu */
+    .menu {
+      display: flex;
+      justify-content: space-between;
+      background-color: #eee;
+      padding: 10px;
+    }
+
+    .menu-item {
+      position: relative;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .child-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #ddd;
+      padding: 5px;
+    }
+
+    .menu-item:hover .child-menu {
+      display: block;
+    }
+
+    .sub-child-menu {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>My Menu</h1>
+<nav id="menu"></nav>
+
+<script>
+  const menuData = [
+    {
+      "name": "New",
+      "ID": 2048,
+      "parent": "0"     
+    },
+    {
+      "name": "Travel Tales",
+      "ID": 7584,
+      "parent":"0"
+    },
+    {
+      "name": "Travel Themes",
+      "ID": 334,
+      "parent": "0"
+    },
+    {
+      "name": "Domestic Tales",
+      "ID": 8887,
+      "parent": "7584"    
+    },
+    {
+      "name": "International Tales",
+      "ID": 8888,
+      "parent": "7584"
+    },
+    {
+      "name": "Honeymoon",
+      "ID": 340,
+      "parent": "8888"
+    },
+    {
+      "name": "Weekend Getaways",
+      "ID": 1416,
+      "parent": "334"
+    },
+    {
+      "name": "Holiday",
+      "ID": 968,
+      "parent": "334"
+    },
+    {
+      "name": "Travelogues",
+      "ID": 4208,
+      "parent": "334"
+    },
+    {
+      "name": "Shopping & Party",
+      "ID": 337,
+      "parent": "334"
+    },
+    {
+      "name": "Food & Drink",
+      "ID": 338,
+      "parent": "334"
+    },
+    {
+      "name": "Adventure",
+      "ID": 335,
+      "parent": "338"
+    },
+    {
+      "name": "Heritage",
+      "ID": 339,
+      "parent": "334"
+    },
+    {
+      "name": "Pilgrimage",
+      "ID": 341,
+      "parent": "334"
+    },
+    {
+      "name": "Art & Festival",
+      "ID": 336,
+      "parent": "334"
+    },
+    {
+      "name": "Health & Wellness",
+      "ID": 1418,
+      "parent": "334"
+    },
+    {
+      "name": "Photoscope",
+      "ID": 1837,
+      "parent": "1418"
+    },
+    {
+      "name": "Travel Tips",
+      "ID": 331,
+      "parent": "1418"
+    },
+    {
+      "name": "Go International",
+      "ID": 1544,
+      "parent": "336"
+    },
+    {
+      "name": "Offbeat",
+      "ID": 1545,
+      "parent": "0"
+    }
+  ];
+
+  function createMenu(menuItems, parentElement) {
+    const ol = document.createElement('ol');
+    menuItems.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.name;
+      li.dataset.id = item.ID; 
+      ol.appendChild(li);
+      if (item.parent === "0") {
+        parentElement.appendChild(ol);
+      } else {
+        const parentLi = ol.querySelector(`li[data-id="${item.parent}"]`);
+        if (parentLi) {
+          if (!parentLi.querySelector('ol')) {
+            parentLi.appendChild(document.createElement('ol'));
+          }
+          parentLi.querySelector('ol').appendChild(li);
+        }
+      }
+    });
+  }
+
+  const menuContainer = document.getElementById('menu');
+  createMenu(menuData, menuContainer);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- fetch('data.json')
+    .then(response => response.json()) // Parse JSON response -->
+<!-- 
+    fetch('data.json')
+    .then(response => response.json()) // Parse JSON response
+    .then(menuData => { // Use the parsed JSON data
+      createMenu(menuData, menuContainer); // Call createMenu function
+    })
+    .catch(error => console.error('Error fetching JSON data:', error)); // Handle errors -->

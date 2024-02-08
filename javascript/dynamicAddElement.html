@@ -1,0 +1,22 @@
+<!--  write a JS program for adding a new element , dynamically. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick= "dynamicallyAddElement()">click here</button>
+    <script>
+        function dynamicallyAddElement(){
+            let firstVariable = document.createElement('test');
+            firstVariable.textContent = "Test has been changed";
+            firstVariable.setAttribute('class' , 'note');
+            document.body.appendChild(firstVariable);
+        }
+    </script>
+</body>
+</html>
+

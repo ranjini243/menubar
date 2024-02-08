@@ -1,0 +1,79 @@
+/* Clear floats */
+.clear {
+    clear: both;
+  }
+  
+  /* Styling for the menu container */
+  .menu {
+    background: #eee;
+  }
+  
+  /* Styling for the top-level <ul> element */
+  .menu ul {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+  }
+  
+  /* Styling for the top-level <li> elements */
+  .menu ul li {
+    float: left;
+    position: relative;
+  }
+  
+  /* Styling for the links within the menu */
+  .menu ul li a {
+    display: block;
+    line-height: 40px;
+    padding: 0px 10px;
+    color: #444;
+    text-decoration: none;
+  }
+  
+  /* Hover effect for the links */
+  .menu ul li:hover a {
+    background: #ddd;
+  }
+  
+  /* Styling for the submenu */
+  .menu ul li ul {
+    position: absolute;
+    left: 0px;
+    top: 40px;
+    background: #ddd;
+    visibility: hidden;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transition: all 0.1s ease-in;
+  }
+  
+  /* Show the submenu when its parent is hovered over */
+  .menu ul li:hover ul {
+    visibility: visible;
+    opacity: 1;
+    filter: alpha(opacity=100);
+  }
+  
+  /* Styling for submenu items */
+  .menu ul li ul li {
+    float: none;
+    border-top: solid 1px #bbb;
+  }
+  
+  .menu ul li ul li:first-child {
+    border-top: none;
+  }
+  
+  /* Styling for submenu links */
+  .menu ul li ul li a {
+    white-space: nowrap;
+    line-height: normal;
+    padding: 10px;
+  }
+  
+  /* Hover effect for submenu links */
+  .menu ul li ul li a:hover {
+    text-decoration: underline;
+  }
+  
