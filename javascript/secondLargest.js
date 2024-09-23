@@ -11,6 +11,8 @@ function second_largest(arr){
             second_largest_value = largest_value;
         }
     }
+
+    return second_largest_value;
 }
 
 const array2 = [1,45,34,89,0, 90 ,67];
