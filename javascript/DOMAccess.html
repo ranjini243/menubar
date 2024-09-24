@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reduce DOM Access
+    </title>
+</head>
+<body>
+    <div id="container">
+        <ul id="list">
+
+        </ul>
+    </div>
+
+    <button id="addItemButton">
+        Add Items
+    </button>
+    <script>
+        const listItems = document.getElementById('list');
+        const addItemButton =  document.getElementById('addItemButton');
+
+        function addItem(items){
+            const Fragment = document.createDocumentFragment();
+
+            items.forEach(element => {
+                const li = document.createElement('li');
+                li.textContent = element;
+                Fragment.appendChild('li')
+            });
+
+            list.element.appendChild(Fragment)
+
+            addItemButton.addEventListener('click', ()=>{
+                addListItems(itemsArray)
+            })
+        }
+    </script>
+</body>
+</html>
